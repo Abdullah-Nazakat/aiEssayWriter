@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
-// import RichTextEditor from '@/components/richeditor';
+import RichTextEditor from '@/components/richeditor';
 import { FiCopy, FiTrash2, FiDownload, FiChevronDown } from 'react-icons/fi';
 import { toast, Toaster } from 'react-hot-toast';
 import { jsPDF } from 'jspdf';
@@ -309,7 +309,7 @@ const HomeMainarea = () => {
         {/* Editor Section */}
         <div className="flex-1 flex flex-col gap-4">
           <div className="border rounded-lg overflow-hidden flex-1 flex flex-col">
-            {/* <RichTextEditor ref={richTextEditorRef} className="flex-1" /> */}
+            <RichTextEditor ref={richTextEditorRef} className="flex-1" />
             
             {/* Editor Controls - Only shown when content has been generated */}
             {hasGeneratedContent && (
