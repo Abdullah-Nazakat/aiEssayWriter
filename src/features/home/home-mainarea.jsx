@@ -6,7 +6,6 @@ import { toast, Toaster } from 'react-hot-toast';
 import { jsPDF } from 'jspdf';
 
 const HomeMainarea = () => {
-  // Form states
   const [formData, setFormData] = useState({
     topic: '',
     academicLevel: '',
