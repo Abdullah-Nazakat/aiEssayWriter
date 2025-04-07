@@ -111,8 +111,8 @@ const HomeMainarea = () => {
       let blob, filename, mimeType;
       const plainTextContent = editorContent.replace(/<[^>]*>/g, '');
       
-      // Create a filename with topic and date
-      const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+     
+      const currentDate = new Date().toISOString().split('T')[0]; 
       const topicPart = formData.topic 
         ? formData.topic.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').substring(0, 30) 
         : 'essay';
