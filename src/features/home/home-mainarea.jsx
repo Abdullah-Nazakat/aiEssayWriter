@@ -19,7 +19,6 @@ const HomeMainarea = () => {
   const [hasGeneratedContent, setHasGeneratedContent] = useState(false);
   const richTextEditorRef = useRef(null);
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
