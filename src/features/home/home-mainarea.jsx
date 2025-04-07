@@ -25,7 +25,7 @@ const HomeMainarea = () => {
       [name]: name === 'wordCount' ? Math.max(100, parseInt(value) || 100) : value
     }));
   };
-
+// pakistan
   // Check if form is valid for submission
   const isFormValid = formData.topic && formData.academicLevel;
 
