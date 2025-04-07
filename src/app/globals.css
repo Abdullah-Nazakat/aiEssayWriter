@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --gradient-1: #DEF9C4;   
+  --gradient-2: #9CDBA6;  
+  --gradient-3: #50B498;   
+  --gradient-4: #468585;   
 }
 
 @theme inline {
@@ -14,8 +18,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: grey;
+    --gradient-1: #DEF9C4;   
+    --gradient-2: #9CDBA6;  
+    --gradient-3: #50B498;   
+    --gradient-4: #468585; 
   }
 }
 
@@ -23,4 +31,155 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3),
+    var(--gradient-4),
+    var(--gradient-1)
+  );
+  background-size: 300% 300%;
+  animation: gradient-move 12s ease infinite;
+  z-index: -2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-dark);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 2.5rem;
+  color: var(--foreground);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-button {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background-color: var(--primary);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(250, 188, 63, 0.3);
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(250, 188, 63, 0.4);
+}
+
+.button-highlight {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.hero-button:hover .button-highlight {
+  transform: scale(1);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-scroll-indicator span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid var(--primary);
+  border-right: 2px solid var(--primary);
+  transform: rotate(45deg);
+  animation: scroll-pulse 2s infinite;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes scroll-pulse {
+  0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+  .hero-subtitle {
+    margin-bottom: 2rem;
+  }
+}
+
+
+.ql-container {
+  border: none !important;
+}
+
+.ql-editor {
+  border: none !important;
+  box-shadow: none !important;
 }
