@@ -4,7 +4,7 @@ import RichTextEditor from '@/components/richeditor';
 import { FiCopy, FiTrash2, FiDownload, FiChevronDown } from 'react-icons/fi';
 import { toast, Toaster } from 'react-hot-toast';
 import { jsPDF } from 'jspdf';
-
+// import HomeSecTwo from '@/features/home/home-sec-two'
 const HomeMainarea = () => {
   const [formData, setFormData] = useState({
     topic: '',
@@ -25,11 +25,9 @@ const HomeMainarea = () => {
       [name]: name === 'wordCount' ? Math.max(100, parseInt(value) || 100) : value
     }));
   };
-// pakistan
-  // Check if form is valid for submission
+
   const isFormValid = formData.topic && formData.academicLevel;
 
-  // Generate essay content
   const generateEssay = async () => {
     if (!isFormValid) {
       toast.error('Please fill in all required fields');
@@ -61,7 +59,7 @@ const HomeMainarea = () => {
     }
   };
 
-  // Mock AI content generation
+
   const generateAIContent = async (params) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -77,7 +75,6 @@ const HomeMainarea = () => {
     });
   };
 
-  // Editor actions
   const handleCopyContent = () => {
     if (!hasGeneratedContent) {
       toast.error('No content to copy');
@@ -178,6 +175,7 @@ const HomeMainarea = () => {
   };
 
   return (
+  <>
     <div className="max-w-7xl w-full mx-auto p-4 md:p-6 bg-white rounded-lg shadow-md">
       <Toaster position="top-center" />
       
@@ -231,7 +229,7 @@ const HomeMainarea = () => {
             <label className="block text-lg font-medium text-gray-700">
               Word Count
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <button 
                 onClick={() => setFormData(prev => ({
                   ...prev,
@@ -253,6 +251,7 @@ const HomeMainarea = () => {
                 onChange={handleInputChange}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-center transition"
                 min="100"
+                readOnly
               />
               <button 
                 onClick={() => setFormData(prev => ({
@@ -276,7 +275,8 @@ const HomeMainarea = () => {
               value={formData.description}
               onChange={handleInputChange}
               rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2
+               focus:ring-blue-500 focus:border-blue-500 transition resize-none"
               placeholder="Add any specific requirements or details..."
             />
           </div>
@@ -285,7 +285,7 @@ const HomeMainarea = () => {
           <button
             onClick={generateEssay}
             disabled={!isFormValid || isGenerating}
-            className={`w-full py-3 px-6 rounded-lg font-medium text-black transition-all cursor-pointer ${
+            className={`w-full py-3 px-6 rounded-lg font-medium text-black transition-all ${
               !isFormValid || isGenerating
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-gradient-to-r from-[var(--gradient-1)] via-[var(--gradient-2)] to-[var(--gradient-3)] bg-[length:300%_300%] animate-gradient-move'
@@ -377,6 +377,8 @@ const HomeMainarea = () => {
         </div>
       </div>
     </div>
+    {/* <HomeSecTwo/> */}
+  </>
   );
 };
 
